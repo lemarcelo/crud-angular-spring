@@ -1,0 +1,5 @@
+ng serve -> Play
+ng new teste -> Novo Projeto
+ng g m modulo --rounting -> Novo módulo com roteamento
+ng g c -> Component
+
