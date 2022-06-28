@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router, RouterState } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 
 import { Course } from '../model/course';
@@ -15,16 +16,18 @@ export class CoursesComponent implements OnInit {
 
   courses$: Observable<Course[]>;
 
-  displayedColumns = ['name','category'];
+  displayedColumns = ['name','category', 'actions'];
 
   //coursesService: CoursesService;
 
+  //this.courses = [];
+  //this.coursesService = new CoursesService();
   constructor(
     private coursesService: CoursesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
     ) {
-    //this.courses = [];
-    //this.coursesService = new CoursesService();
     this.courses$ = this.coursesService.list()
     .pipe(
       catchError(error => {
@@ -39,9 +42,12 @@ export class CoursesComponent implements OnInit {
       data: ErrorMsg
     });
   }
-
-
    ngOnInit(): void {
+  }
+
+  onAdd(){
+    // relativeTo permite que a rota atual seja usada como parâmetro de complemento da nova RouterState(new)
+    this.router.navigate(['new'],  {relativeTo: this.route})
   }
 
 }
