@@ -13,8 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-// Caso precise renomear o banco de dados de acordo com as classes (Entity ->
-// Table)
+// Caso precise renomear o banco de dados de acordo com as classes (Entity -> Table)
 // @Table(name = "cursos")
 public class Course {
 

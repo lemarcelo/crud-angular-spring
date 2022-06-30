@@ -8,7 +8,9 @@ import { Course } from './../model/course';
   providedIn: 'root'
 })
 export class CoursesService {
-private readonly API = 'api/courses';
+
+  private readonly API = 'api/courses';
+
 constructor(private httpClient: HttpClient) {}
 
 list(){
@@ -18,5 +20,11 @@ list(){
     //delay(5000),
     tap(courses => console.log(courses))
   );
+  }
+
+  save(record: Course){
+    //TODO Pesquisar para que serve o Pipe(first)
+    return this.httpClient.post<Course>(this.API, record).pipe(first());
+
   }
 }
